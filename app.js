@@ -8,8 +8,6 @@ function getComputerChoice(){
     return computerChoices[Math.floor(Math.random() * computerChoices.length)];
 }
 
-
-
 // playRound
 // Takes two inputs player's and computer's choices (two strings)
 // Convert player input to lower case so this input can be case-insensitive
@@ -44,9 +42,38 @@ function playRound(playerChoice,computerChoice){
     return roundResult;
 }
 
-const playerChoice = "RoCk";
-const computerChoice = getComputerChoice();
+// game
+// Plays rock paper game five times
+// Displays game results to console
+function game (){
+    let gamesPlayed = 0;
 
-console.log("Player's choice is: ",playerChoice.toLowerCase());
-console.log("Computer's choice is: ",computerChoice);
-console.log("Round result is: ",playRound(playerChoice,computerChoice));
+    while(gamesPlayed < 5){
+
+        console.log("Round %s result is: %s", gamesPlayed+1,playRound(askPlayerChoice(),getComputerChoice()));
+        gamesPlayed++;
+    }
+
+}
+// askPlayerChoice
+// Validate given value, that it is paper, rock or scissors
+// If value is written wrongly, ask again
+function askPlayerChoice(){
+    let valueCorrect = false;
+    let givenChoice;
+
+    while (!valueCorrect){
+        givenChoice = prompt("Enter Paper, Rock or Scissors");
+        givenChoice = givenChoice.toLowerCase();
+    
+        if (givenChoice === "paper" || givenChoice === "rock" || givenChoice === "scissors"){
+            valueCorrect = true;
+        } else {
+            console.log("Given value is wrong! Try again.")
+        }
+    }
+    return givenChoice;
+}
+
+// Let's play!
+game();
