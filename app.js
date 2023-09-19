@@ -76,4 +76,4 @@ function askPlayerChoice(){
 }
 
 // Let's play!
-game();
+// game();
