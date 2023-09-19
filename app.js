@@ -42,19 +42,7 @@ function playRound(playerChoice,computerChoice){
     return roundResult;
 }
 
-// game
-// Plays rock paper game five times
-// Displays game results to console
-function game (){
-    let gamesPlayed = 0;
 
-    while(gamesPlayed < 5){
-
-        console.log("Round %s result is: %s", gamesPlayed+1,playRound(askPlayerChoice(),getComputerChoice()));
-        gamesPlayed++;
-    }
-
-}
 // askPlayerChoice
 // Validate given value, that it is paper, rock or scissors
 // If value is written wrongly, ask again
@@ -75,5 +63,33 @@ function askPlayerChoice(){
     return givenChoice;
 }
 
-// Let's play!
-// game();
+// Add eventListeners to buttons and play to game according to user's choice.
+// Result of the game is printed to a paragraph on the page
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+
+    button.addEventListener('click', () => {
+        
+        let result = "";
+        const resultParagraph = document.querySelector('#result');
+
+        switch (button.id) {
+            case "1": 
+                result = playRound("Rock",getComputerChoice());
+                break;
+            case "2":
+                result = playRound("Paper",getComputerChoice());
+                break;
+            case "3":
+                result = playRound("Scissors",getComputerChoice());
+                break;
+            default: 
+                console.log("Something went wrong!");
+        }
+    
+        resultParagraph.textContent = result;
+
+    });
+
+});
+
