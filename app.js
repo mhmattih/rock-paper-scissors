@@ -1,5 +1,6 @@
 console.log("Rock Paper Scissors game begins!");
 
+// Global variables to count wins
 let winsByUser = 0;
 let winsByCpu = 0;
 
@@ -13,13 +14,12 @@ function getComputerChoice(){
 
 // playRound
 // Takes two inputs player's and computer's choices (two strings)
-// Convert player input to lower case so this input can be case-insensitive
 // Compute game result. Rules are the following
 // 1. Rock wins scissors, rock loses paper
 // 2. Scissors win paper, scissors lose rock
 // 3. Paper wins rock, paper lose scissors
 // 4. If choices are same, it's a tie!
-// Return a game result (a string)
+// Return a game result code
 function playRound(playerChoice,computerChoice){
     
     let roundResult;
@@ -45,8 +45,7 @@ function playRound(playerChoice,computerChoice){
 }
 
 // playGame function, which takes an event as input
-// CPU choice is printed to a paragraph on the page
-// Result of the game is printed to a paragraph on the page
+// Result of the game is displayed on the page
 function playGame(e){
 
     let result = 0;
@@ -55,6 +54,7 @@ function playGame(e){
     let userChoice = "";
     let computerChoice = getComputerChoice();
 
+    // plays one round of RPS game and writes its result code to result variable
     switch (e.target.id) {
         case "1":
             userChoice = "Rock";
@@ -72,6 +72,7 @@ function playGame(e){
             result = "Something went wrong!, Try again";
     }
     
+    // makes counting of wins and prints certain texts
     switch (result) {
         case -3:
             resultText = "You Lose! Scissors beats Paper";
@@ -109,6 +110,7 @@ function playGame(e){
     
 }
 
+// To display results on the page
 function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     const roundResultParagraph = document.querySelector('#roundResult');
     const computerChoiceParagraph = document.querySelector('#cpuChoice');
