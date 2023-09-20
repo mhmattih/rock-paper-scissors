@@ -117,6 +117,7 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     const userChoiceParagraph = document.querySelector('#userChoice');
     const winsByCpuParagraph = document.querySelector('#winsByCpu');
     const winsByUserParagraph = document.querySelector('#winsByUser');
+    const winnerTextParagraph = document.querySelector('#winnerText');
 
     computerChoiceParagraph.textContent = computerChoice;
     roundResultParagraph.textContent = result;
@@ -124,7 +125,18 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     winsByCpuParagraph.textContent = winsByCpu;
     winsByUserParagraph.textContent = winsByUser;
 
+    if (winsByCpu == 5 || winsByUser == 5){
+
+        if(winsByUser == 5){
+            winnerTextParagraph.textContent = "You won the game! Congratulations";
+        }else{
+            winnerTextParagraph.textContent = "You lost! CPU won the game!";
+        }
+        
+    }
+
 }
+
 // Add eventListeners to buttons and play to game when button is clicked
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach((button) => button.addEventListener('click', playGame));
