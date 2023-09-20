@@ -63,34 +63,51 @@ function askPlayerChoice(){
 }*/
 
 // playGame function, which takes an event as input
+// CPU choice is printed to a paragraph on the page
 // Result of the game is printed to a paragraph on the page
 function playGame(e){
+    
+    let winsByUser = 0;
+    let winsByUpu = 0;
+ 
     let result = "";
-    const roundResultParagraph = document.querySelector('#roundResult');
-    const computerChoiceParagraph = document.querySelector('#cpuChoice');
-
+    let userChoice = "";
     let computerChoice = getComputerChoice();
 
     switch (e.target.id) {
         case "1":
-            result = playRound("Rock",computerChoice);
+            userChoice = "Rock";
+            result = playRound(userChoice,computerChoice);
             break;
         case "2":
-            result = playRound("Paper",computerChoice);
+            userChoice = "Paper";
+            result = playRound(userChoice,computerChoice);
             break;
         case "3":
-            result = playRound("Scissors",computerChoice);
+            userChoice = "Scissors";
+            result = playRound(userChoice,computerChoice);
             break;
         default: 
             result = "Something went wrong!, Try again";
     }
 
-    computerChoiceParagraph.textContent = computerChoice;
-    roundResultParagraph.textContent = result;
+    displayResults(result,computerChoice,userChoice);
+
 }
 
+function displayResults(result,computerChoice,userChoice){
+    const roundResultParagraph = document.querySelector('#roundResult');
+    const computerChoiceParagraph = document.querySelector('#cpuChoice');
+    const userChoiceParagraph = document.querySelector('#userChoice');
+
+    computerChoiceParagraph.textContent = computerChoice;
+    roundResultParagraph.textContent = result;
+    userChoiceParagraph.textContent = userChoice;
+
+}
 // Add eventListeners to buttons and play to game when button is clicked
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach((button) => button.addEventListener('click', playGame));
+
 
 

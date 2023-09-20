@@ -9,24 +9,38 @@
 <body>
     <h1>Rock Paper Scissors game</h1>
 
-    <div class="playersChoiceContainer"> 
+    <div class = "playersChoiceContainer"> 
         <p>Player, Make your choice!</p>
         <button id="1">Rock</button>
         <button id="2">Paper</button>
         <button id="3">Scissors</button>
     </div>
 
-    <div class="cpuChoiceContainer">
+    <div class = "userChoiceContainer">
+        <p>Your choice was: 
+            <div id="userChoice"></div>
+        </p>
+    </div>
+
+    <div class = "cpuChoiceContainer">
         <p>CPU's choice was: 
             <div id="cpuChoice"></div>
         </p>
     </div>
 
-    <div id ="resultContainer">
+    <div class = "roundResultContainer">
         <p>And the winner of the round is:
             <div id="roundResult"></div>
         </p>
+    </div>
 
+    <div class = "matchResultContainer">
+        <p>Wins by CPU:
+            <div id="winsByCpu"></div>
+        </p>
+        <p>Wins by User:
+            <div id="winsByUser"></div>
+        </p>
     </div>
 </body>
 </html>
