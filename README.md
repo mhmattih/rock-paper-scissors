@@ -8,7 +8,7 @@ Required skills for this project:
 
 
 Game specs
-- Best of 9 rounds. Five wins to victory!
+- Five wins to victory!
 - How game works
     - Landing page with a button to start the game
     - When start game button is pressed user is forwarded to a match page 

@@ -1,5 +1,8 @@
 console.log("Rock Paper Scissors game begins!");
 
+let winsByUser = 0;
+let winsByCpu = 0;
+
 // getComputerChoice
 // Compute computer's choice randomly, three choices, by default lowercase.
 // Returns result string "Rock", "Paper" or "Scissors"
@@ -22,21 +25,21 @@ function playRound(playerChoice,computerChoice){
     let roundResult;
 
     if (playerChoice === computerChoice){
-        roundResult = "It's a tie!"
-    } else if (playerChoice === "Rock" && computerChoice === "Paper"){
-        roundResult = "You Lose! Paper beats Rock";
-    } else if (playerChoice === "Paper" && computerChoice === "Rock"){
-        roundResult = "You Win! Paper beats Rock";
-    } else if (playerChoice === "Scissors" && computerChoice === "Rock"){
-        roundResult = "You Lose! Rock beats Scissors";
+        roundResult = 0;
     } else if (playerChoice === "Rock" && computerChoice === "Scissors"){
-        roundResult = "You Win! Rock beats Scissors";
-    } else if (playerChoice === "Paper" && computerChoice === "Scissors"){
-        roundResult = "You Lose! Scissors beats Paper";
+        roundResult = 1;
+    } else if (playerChoice === "Paper" && computerChoice === "Rock"){
+        roundResult = 2;
     } else if (playerChoice === "Scissors" && computerChoice === "Paper"){
-        roundResult = "You Win! Scissors beats Paper";
+        roundResult = 3;
+    } else if (playerChoice === "Scissors" && computerChoice === "Rock"){
+        roundResult = -1;
+    } else if (playerChoice === "Rock" && computerChoice === "Paper"){
+        roundResult = -2;
+    } else if (playerChoice === "Paper" && computerChoice === "Scissors"){
+        roundResult = -3;
     } else {
-        roundResult = "Error in choices!"
+        roundResult = 999;
     }
     return roundResult;
 }
@@ -66,11 +69,10 @@ function askPlayerChoice(){
 // CPU choice is printed to a paragraph on the page
 // Result of the game is printed to a paragraph on the page
 function playGame(e){
-    
-    let winsByUser = 0;
-    let winsByUpu = 0;
- 
-    let result = "";
+
+    let result = 0;
+    let resultText = "";
+
     let userChoice = "";
     let computerChoice = getComputerChoice();
 
@@ -90,19 +92,56 @@ function playGame(e){
         default: 
             result = "Something went wrong!, Try again";
     }
+    
+    switch (result) {
+        case -3:
+            resultText = "You Lose! Scissors beats Paper";
+            winsByCpu++;
+            break;
+        case -2:
+            resultText = "You Lose! Paper beats Rock";
+            winsByCpu++;
+            break;
+        case -1:
+            resultText = "You Lose! Rock beats Scissors";
+            winsByCpu++;
+            break;
+        case 0:
+            resultText = "It's a tie!"
+            break;
+        case 1:
+            resultText = "You Win! Rock beats Scissors";
+            winsByUser++;
+            break;
+        case 2:
+            resultText = "You Win! Paper beats Rock";
+            winsByUser++;
+            break;
+        case 3:
+            resultText = "You Win! Scissors beats Paper";
+            winsByUser++;
+            break;
+        default:
+            resultText = "Something went wrong!, Try again";
 
-    displayResults(result,computerChoice,userChoice);
+    }
 
+    displayResults(resultText,computerChoice,userChoice,winsByCpu,winsByUser);
+    
 }
 
-function displayResults(result,computerChoice,userChoice){
+function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     const roundResultParagraph = document.querySelector('#roundResult');
     const computerChoiceParagraph = document.querySelector('#cpuChoice');
     const userChoiceParagraph = document.querySelector('#userChoice');
+    const winsByCpuParagraph = document.querySelector('#winsByCpu');
+    const winsByUserParagraph = document.querySelector('#winsByUser');
 
     computerChoiceParagraph.textContent = computerChoice;
     roundResultParagraph.textContent = result;
     userChoiceParagraph.textContent = userChoice;
+    winsByCpuParagraph.textContent = winsByCpu;
+    winsByUserParagraph.textContent = winsByUser;
 
 }
 // Add eventListeners to buttons and play to game when button is clicked
