@@ -44,27 +44,6 @@ function playRound(playerChoice,computerChoice){
     return roundResult;
 }
 
-// askPlayerChoice, not needed in current implementation
-// Validate given value, that it is paper, rock or scissors
-// If value is written wrongly, ask again
-/*
-function askPlayerChoice(){
-    let valueCorrect = false;
-    let givenChoice;
-
-    while (!valueCorrect){
-        givenChoice = prompt("Enter Paper, Rock or Scissors");
-        givenChoice = givenChoice.toLowerCase();
-    
-        if (givenChoice === "paper" || givenChoice === "rock" || givenChoice === "scissors"){
-            valueCorrect = true;
-        } else {
-            console.log("Given value is wrong! Try again.")
-        }
-    }
-    return givenChoice;
-}*/
-
 // playGame function, which takes an event as input
 // CPU choice is printed to a paragraph on the page
 // Result of the game is printed to a paragraph on the page
