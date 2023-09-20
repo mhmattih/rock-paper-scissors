@@ -4,7 +4,7 @@ console.log("Rock Paper Scissors game begins!");
 // Compute computer's choice randomly, three choices, by default lowercase.
 // Returns result string "Rock", "Paper" or "Scissors"
 function getComputerChoice(){
-    const computerChoices = ["rock", "paper", "scissors"];
+    const computerChoices = ["Rock", "Paper", "Scissors"];
     return computerChoices[Math.floor(Math.random() * computerChoices.length)];
 }
 
@@ -18,34 +18,33 @@ function getComputerChoice(){
 // 4. If choices are same, it's a tie!
 // Return a game result (a string)
 function playRound(playerChoice,computerChoice){
-    const playerChoiceLow = playerChoice.toLowerCase();
+    
     let roundResult;
 
-    if (playerChoiceLow === computerChoice){
+    if (playerChoice === computerChoice){
         roundResult = "It's a tie!"
-    } else if (playerChoiceLow === "rock" && computerChoice === "paper"){
+    } else if (playerChoice === "Rock" && computerChoice === "Paper"){
         roundResult = "You Lose! Paper beats Rock";
-    } else if (playerChoiceLow === "paper" && computerChoice === "rock"){
+    } else if (playerChoice === "Paper" && computerChoice === "Rock"){
         roundResult = "You Win! Paper beats Rock";
-    } else if (playerChoiceLow === "scissors" && computerChoice === "rock"){
+    } else if (playerChoice === "Scissors" && computerChoice === "Rock"){
         roundResult = "You Lose! Rock beats Scissors";
-    } else if (playerChoiceLow === "rock" && computerChoice === "scissors"){
+    } else if (playerChoice === "Rock" && computerChoice === "Scissors"){
         roundResult = "You Win! Rock beats Scissors";
-    } else if (playerChoiceLow === "paper" && computerChoice === "scissors"){
+    } else if (playerChoice === "Paper" && computerChoice === "Scissors"){
         roundResult = "You Lose! Scissors beats Paper";
-    } else if (playerChoiceLow === "scissors" && computerChoice === "paper"){
+    } else if (playerChoice === "Scissors" && computerChoice === "Paper"){
         roundResult = "You Win! Scissors beats Paper";
     } else {
         roundResult = "Error in choices!"
     }
-    
     return roundResult;
 }
-
 
 // askPlayerChoice, not needed in current implementation
 // Validate given value, that it is paper, rock or scissors
 // If value is written wrongly, ask again
+/*
 function askPlayerChoice(){
     let valueCorrect = false;
     let givenChoice;
@@ -61,62 +60,37 @@ function askPlayerChoice(){
         }
     }
     return givenChoice;
-}
+}*/
 
-//  
+// playGame function, which takes an event as input
 // Result of the game is printed to a paragraph on the page
 function playGame(e){
     let result = "";
-    const resultParagraph = document.querySelector('#result');
+    const roundResultParagraph = document.querySelector('#roundResult');
+    const computerChoiceParagraph = document.querySelector('#cpuChoice');
+
+    let computerChoice = getComputerChoice();
 
     switch (e.target.id) {
-        case "1": 
-            result = playRound("Rock",getComputerChoice());
+        case "1":
+            result = playRound("Rock",computerChoice);
             break;
         case "2":
-            result = playRound("Paper",getComputerChoice());
+            result = playRound("Paper",computerChoice);
             break;
         case "3":
-            result = playRound("Scissors",getComputerChoice());
+            result = playRound("Scissors",computerChoice);
             break;
         default: 
-            console.log("Something went wrong!");
+            result = "Something went wrong!, Try again";
     }
 
-    resultParagraph.textContent = result;
+    computerChoiceParagraph.textContent = computerChoice;
+    roundResultParagraph.textContent = result;
 }
 
 // Add eventListeners to buttons and play to game when button is clicked
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach((button) => button.addEventListener('click', playGame));
 
-
-/*
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-
-    button.addEventListener('click', () => {
-        
-        let result = "";
-        const resultParagraph = document.querySelector('#result');
-
-        switch (button.id) {
-            case "1": 
-                result = playRound("Rock",getComputerChoice());
-                break;
-            case "2":
-                result = playRound("Paper",getComputerChoice());
-                break;
-            case "3":
-                result = playRound("Scissors",getComputerChoice());
-                break;
-            default: 
-                console.log("Something went wrong!");
-        }
-    
-        resultParagraph.textContent = result;
-
-    });
-
-});*/
 
