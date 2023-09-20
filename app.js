@@ -4,6 +4,23 @@ console.log("Rock Paper Scissors game begins!");
 let winsByUser = 0;
 let winsByCpu = 0;
 
+const roundResultParagraph = document.querySelector('#roundResult');
+const computerChoiceParagraph = document.querySelector('#cpuChoice');
+const userChoiceParagraph = document.querySelector('#userChoice');
+const winsByCpuParagraph = document.querySelector('#winsByCpu');
+const winsByUserParagraph = document.querySelector('#winsByUser');
+const winnerTextParagraph = document.querySelector('#winnerText');
+
+const rockBtn = document.querySelector('.rockBtn');
+const paperBtn = document.querySelector('.paperBtn');
+const scissorsBtn = document.querySelector('.scissorsBtn');
+const restartBtn = document.querySelector('.restartBtn');
+
+restartBtn.disabled = true;
+rockBtn.disabled = false;
+paperBtn.disabled = false;
+scissorsBtn.disabled = false;
+
 // getComputerChoice
 // Compute computer's choice randomly, three choices, by default lowercase.
 // Returns result string "Rock", "Paper" or "Scissors"
@@ -55,16 +72,16 @@ function playGame(e){
     let computerChoice = getComputerChoice();
 
     // plays one round of RPS game and writes its result code to result variable
-    switch (e.target.id) {
-        case "1":
+    switch (e.target.className) {
+        case "rockBtn rpsBtn":
             userChoice = "Rock";
             result = playRound(userChoice,computerChoice);
             break;
-        case "2":
+        case "paperBtn rpsBtn":
             userChoice = "Paper";
             result = playRound(userChoice,computerChoice);
             break;
-        case "3":
+        case "scissorsBtn rpsBtn":
             userChoice = "Scissors";
             result = playRound(userChoice,computerChoice);
             break;
@@ -112,12 +129,6 @@ function playGame(e){
 
 // To display results on the page
 function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
-    const roundResultParagraph = document.querySelector('#roundResult');
-    const computerChoiceParagraph = document.querySelector('#cpuChoice');
-    const userChoiceParagraph = document.querySelector('#userChoice');
-    const winsByCpuParagraph = document.querySelector('#winsByCpu');
-    const winsByUserParagraph = document.querySelector('#winsByUser');
-    const winnerTextParagraph = document.querySelector('#winnerText');
 
     computerChoiceParagraph.textContent = computerChoice;
     roundResultParagraph.textContent = result;
@@ -132,14 +143,38 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
         }else{
             winnerTextParagraph.textContent = "You lost! CPU won the game!";
         }
-        
+        restartBtn.disabled = false;
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
     }
+}
+
+function restartGame(){
+            
+    computerChoiceParagraph.textContent = "";
+    roundResultParagraph.textContent = "";
+    userChoiceParagraph.textContent = "";
+    winsByCpuParagraph.textContent = "";
+    winsByUserParagraph.textContent = "";
+    winsByUser = 0;
+    winsByCpu = 0;
+
+    restartBtn.disabled = true;
+    rockBtn.disabled = false;
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+    console.log("restartgame");
 
 }
 
+
 // Add eventListeners to buttons and play to game when button is clicked
-const buttons = Array.from(document.querySelectorAll('button'));
-buttons.forEach((button) => button.addEventListener('click', playGame));
+const rpsButtons = Array.from(document.querySelectorAll(".rpsBtn"));
+rpsButtons.forEach((button) => button.addEventListener('click', playGame));
+
+const restartButton = document.querySelector(".restartBtn");
+restartButton.addEventListener('click', restartGame); 
 
 
 
