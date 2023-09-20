@@ -43,7 +43,7 @@ function playRound(playerChoice,computerChoice){
 }
 
 
-// askPlayerChoice
+// askPlayerChoice, not needed in current implementation
 // Validate given value, that it is paper, rock or scissors
 // If value is written wrongly, ask again
 function askPlayerChoice(){
@@ -63,8 +63,35 @@ function askPlayerChoice(){
     return givenChoice;
 }
 
-// Add eventListeners to buttons and play to game according to user's choice.
+//  
 // Result of the game is printed to a paragraph on the page
+function playGame(e){
+    let result = "";
+    const resultParagraph = document.querySelector('#result');
+
+    switch (e.target.id) {
+        case "1": 
+            result = playRound("Rock",getComputerChoice());
+            break;
+        case "2":
+            result = playRound("Paper",getComputerChoice());
+            break;
+        case "3":
+            result = playRound("Scissors",getComputerChoice());
+            break;
+        default: 
+            console.log("Something went wrong!");
+    }
+
+    resultParagraph.textContent = result;
+}
+
+// Add eventListeners to buttons and play to game when button is clicked
+const buttons = Array.from(document.querySelectorAll('button'));
+buttons.forEach((button) => button.addEventListener('click', playGame));
+
+
+/*
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
 
@@ -91,5 +118,5 @@ buttons.forEach((button) => {
 
     });
 
-});
+});*/
 
