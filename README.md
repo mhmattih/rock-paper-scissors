@@ -19,6 +19,16 @@ Game specs
     - When either has 5 wins, match is stopped and Winner is showed on the page. 
     - Play new game button arrives and new match can be started.
 
+The following free pictures are used in this page.
+
+https://www.cleanpng.com/png-paper-notebook-rectangle-4192557/download-png.html
+
+https://www.cleanpng.com/png-stone-png-12833/download-png.html
+
+https://www.cleanpng.com/png-transparent-scissors-png-clipart-picture-20755/download-png.html
+
+https://pixabay.com/photos/wood-board-structure-boards-grain-591631/
+
 
 
 
