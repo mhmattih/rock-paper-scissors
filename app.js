@@ -3,6 +3,7 @@ console.log("Rock Paper Scissors game begins!");
 // Global variables to count wins
 let winsByUser = 0;
 let winsByCpu = 0;
+let gameRound = 0;
 
 const roundResultParagraph = document.querySelector('#roundResult');
 const computerChoiceParagraph = document.querySelector('#cpuChoice');
@@ -67,22 +68,33 @@ function playGame(e){
 
     let result = 0;
     let resultText = "";
+    gameRound++;
+
+    // clean up previous selections, not in the first round
+    if(gameRound != 1){
+        removeHighlight(e);
+    }
 
     let userChoice = "";
     let computerChoice = getComputerChoice();
 
-    console.log(e);
+    // highlight CPU choice
+    highlightComputerChoice(computerChoice);
+    
     // plays one round of RPS game and writes its result code to result variable
     switch (e.target.classList[0]) {
         case "rockImage":
+            e.target.classList.add('highlightSelection');
             userChoice = "Rock";
             result = playRound(userChoice,computerChoice);
             break;
         case "paperImage":
+            e.target.classList.add('highlightSelection');
             userChoice = "Paper";
             result = playRound(userChoice,computerChoice);
             break;
         case "scissorsImage":
+            e.target.classList.add('highlightSelection');
             userChoice = "Scissors";
             result = playRound(userChoice,computerChoice);
             break;
@@ -126,6 +138,36 @@ function playGame(e){
 
     displayResults(resultText,computerChoice,userChoice,winsByCpu,winsByUser);
     
+}
+
+function highlightComputerChoice(computerChoice){
+    let cpuImage;
+    switch (computerChoice){
+        case "Rock":
+            cpuImage = document.querySelector('.cpuRock');
+            cpuImage.classList.add('highlightSelection');
+        break;
+        case "Paper":
+            cpuImage = document.querySelector('.cpuPaper');
+            cpuImage.classList.add('highlightSelection');
+        break;
+        case "Scissors":
+            cpuImage = document.querySelector('.cpuScissors');
+            cpuImage.classList.add('highlightSelection');
+        break;
+        default:
+            computerChoice = "Error in computer choice!";
+    }  
+}
+
+// Remove highlight selections from images
+function removeHighlight(e){
+    let allImages = document.querySelectorAll("img");
+    for(i=0; i<allImages.length; i++)
+    { 
+        if (allImages[i].classList.contains('highlightSelection'))
+            allImages[i].classList.remove('highlightSelection');
+    }
 }
 
 // To display results on the page

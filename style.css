@@ -53,16 +53,19 @@ p{
     color:rgb(53, 51, 49);
     transform: rotate(-35deg);
 }
+
 .rockImage {
     width: 200px;
     height: fit-content;
     padding: 10px;
 }
+
 .paperImage{
     width: 150px;
     height: fit-content;
     padding: 10px;
 }
+
 .scissorsImage{
     width: 180px;
     height: fit-content;
