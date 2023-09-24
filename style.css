@@ -1,12 +1,71 @@
 body{
     background-image: url("./images/wood-591631_1920.jpg");
+
 }
 
 h1{
-    color:rgb(31, 30, 30);
-    text-shadow: 1px 1px 2px rgb(143, 68, 15);
+    color:burlywood;
+
+    text-shadow: 1px 1px 2px rgb(7, 7, 7);
     
     text-align: center;
     font-family:Sans-serif, serif;
     font-size: 50px;
 }
+
+.playChoices{
+    display: flex;
+    justify-content: center;
+        
+}
+
+.ChoiceContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+p{
+    font-family:Sans-serif, serif;
+    /*font-size: 30px;*/
+}
+
+.images{
+    display: flex;
+    align-items: center;
+    border-color: rgb(54, 33, 6);
+    border-style: solid;
+    border-radius: 15px;
+    background-color: burlywood;
+    padding: 10px;
+}
+
+#versusText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.rockImage {
+    width: 200px;
+    height: fit-content;
+    margin: 10px;
+}
+.paperImage{
+    width: 150px;
+    height: fit-content;
+    margin: 10px;
+}
+.scissorsImage{
+    width: 180px;
+    height: fit-content;
+    margin: 10px;
+}
+
+.rockBtn.rpsBtn, .paperBtn.rpsBtn, .scissorsBtn.rpsBtn{
+    background-color: inherit;
+    border: 0 none;
+}
+

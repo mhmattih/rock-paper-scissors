@@ -71,17 +71,18 @@ function playGame(e){
     let userChoice = "";
     let computerChoice = getComputerChoice();
 
+    console.log(e.target.className);
     // plays one round of RPS game and writes its result code to result variable
     switch (e.target.className) {
-        case "rockBtn rpsBtn":
+        case "rockImage":
             userChoice = "Rock";
             result = playRound(userChoice,computerChoice);
             break;
-        case "paperBtn rpsBtn":
+        case "paperImage":
             userChoice = "Paper";
             result = playRound(userChoice,computerChoice);
             break;
-        case "scissorsBtn rpsBtn":
+        case "scissorsImage":
             userChoice = "Scissors";
             result = playRound(userChoice,computerChoice);
             break;
@@ -157,6 +158,8 @@ function restartGame(){
     userChoiceParagraph.textContent = "";
     winsByCpuParagraph.textContent = "";
     winsByUserParagraph.textContent = "";
+    winnerTextParagraph.textContent = "";
+
     winsByUser = 0;
     winsByCpu = 0;
 
@@ -164,7 +167,6 @@ function restartGame(){
     rockBtn.disabled = false;
     paperBtn.disabled = false;
     scissorsBtn.disabled = false;
-    console.log("restartgame");
 
 }
 
