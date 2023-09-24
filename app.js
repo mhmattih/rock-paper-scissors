@@ -1,17 +1,14 @@
 console.log("Rock Paper Scissors game begins!");
 
-// Global variables to count wins
+// Global variables to count rounds and wins 
 let winsByUser = 0;
 let winsByCpu = 0;
 let gameRound = 0;
 
-const roundResultParagraph = document.querySelector('#roundResult');
-const computerChoiceParagraph = document.querySelector('#cpuChoice');
-const userChoiceParagraph = document.querySelector('#userChoice');
-const winsByCpuParagraph = document.querySelector('#winsByCpu');
-const winsByUserParagraph = document.querySelector('#winsByUser');
 const winnerTextParagraph = document.querySelector('#winnerText');
-
+const scoreCpu = document.querySelector('.scoreCpu');
+const scorePlayer= document.querySelector('.scorePlayer');
+const gameLog = document.querySelector('.gameLog');
 const rockBtn = document.querySelector('.rockBtn');
 const paperBtn = document.querySelector('.paperBtn');
 const scissorsBtn = document.querySelector('.scissorsBtn');
@@ -74,11 +71,13 @@ function playGame(e){
     if(gameRound != 1){
         removeHighlight(e);
     }
+    // Add round number to the game results logging
+    resultText += "Round " + gameRound + ": ";
 
     let userChoice = "";
-    let computerChoice = getComputerChoice();
 
-    // highlight CPU choice
+    // make CPU choice and highlight it
+    let computerChoice = getComputerChoice();
     highlightComputerChoice(computerChoice);
     
     // plays one round of RPS game and writes its result code to result variable
@@ -99,40 +98,40 @@ function playGame(e){
             result = playRound(userChoice,computerChoice);
             break;
         default: 
-            result = "Something went wrong!, Try again";
+            result = "999";
     }
     
-    // makes counting of wins and prints certain texts
+    // makes counting of wins and prints certain texts for game logging
     switch (result) {
         case -3:
-            resultText = "You Lose! Scissors beats Paper";
+            resultText += "You Lose! Scissors beats Paper";
             winsByCpu++;
             break;
         case -2:
-            resultText = "You Lose! Paper beats Rock";
+            resultText += "You Lose! Paper beats Rock";
             winsByCpu++;
             break;
         case -1:
-            resultText = "You Lose! Rock beats Scissors";
+            resultText += "You Lose! Rock beats Scissors";
             winsByCpu++;
             break;
         case 0:
-            resultText = "It's a tie!"
+            resultText += "It's a tie!"
             break;
         case 1:
-            resultText = "You Win! Rock beats Scissors";
+            resultText += "You Win! Rock beats Scissors";
             winsByUser++;
             break;
         case 2:
-            resultText = "You Win! Paper beats Rock";
+            resultText += "You Win! Paper beats Rock";
             winsByUser++;
             break;
         case 3:
-            resultText = "You Win! Scissors beats Paper";
+            resultText += "You Win! Scissors beats Paper";
             winsByUser++;
             break;
         default:
-            resultText = "Something went wrong!, Try again";
+            resultText += "Something went wrong!, Try again";
 
     }
 
@@ -173,11 +172,16 @@ function removeHighlight(e){
 // To display results on the page
 function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
 
-    computerChoiceParagraph.textContent = computerChoice;
-    roundResultParagraph.textContent = result;
-    userChoiceParagraph.textContent = userChoice;
-    winsByCpuParagraph.textContent = winsByCpu;
-    winsByUserParagraph.textContent = winsByUser;
+    scoreCpu.textContent = winsByCpu;
+    scorePlayer.textContent = winsByUser;
+
+    // Create game log. A new paragraph to show game results
+    const gameLogPara = document.createElement("p");
+    const resultNode = document.createTextNode(result);
+    gameLogPara.appendChild(resultNode);
+
+    const gameLogElement = document.getElementById("gameLog");
+    gameLogElement.appendChild(gameLogPara);
 
     if (winsByCpu == 5 || winsByUser == 5){
 
@@ -201,6 +205,7 @@ function restartGame(){
     winsByCpuParagraph.textContent = "";
     winsByUserParagraph.textContent = "";
     winnerTextParagraph.textContent = "";
+    document.getElementById("gameLog").remove();
 
     winsByUser = 0;
     winsByCpu = 0;

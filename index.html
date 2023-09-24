@@ -11,7 +11,6 @@
 </head>
 <body>
     <h1>Rock Paper Scissors game</h1>
-
     <section class = "playChoices">
         <div class = "ChoiceContainer"> 
             <p>Player, Make Your Choice!</p>
@@ -40,38 +39,29 @@
             </div>
         </div>
     </section>
+    <section class = "scores">
+        <div class = "scoreBoard">
+            <div class="scoreContainer">
+                <div>PLAYER</div>
+                <div class ="scoreResult scorePlayer">0</div>
+            </div>
+            <div class="scoreContainer">
+                <div>CPU</div>
+                <div class ="scoreResult scoreCpu">0</div>
+            </div>
 
-    <div class = "userChoiceContainer">
-        <p>Your choice was: 
-            <div id="userChoice"></div>
-        </p>
-    </div>
+        </div>
+        <div class = "scoreLog">
+            <h3>Game results:</h3>
+            <div id="gameLog"></div>
 
-    <div class = "cpuChoiceContainer">
-        <p>CPU's choice was: 
-            <div id="cpuChoice"></div>
-        </p>
-    </div>
-
-    <div class = "roundResultContainer">
-        <p>And the winner of the round is:
-            <div id="roundResult"></div>
-        </p>
-    </div>
-
-    <div class = "matchResultContainer">
-        <p>Wins by CPU:
-            <div id="winsByCpu"></div>
-        </p>
-        <p>Wins by User:
-            <div id="winsByUser"></div>
-        </p>
+        </div>
         <p>
             <div id="winnerText"></div>
             <button class="restartBtn">Restart game</button>
         </p>
+    </section>
 
-    </div>
 </body>
 </html>
 
