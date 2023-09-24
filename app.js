@@ -71,9 +71,9 @@ function playGame(e){
     let userChoice = "";
     let computerChoice = getComputerChoice();
 
-    console.log(e.target.className);
+    console.log(e);
     // plays one round of RPS game and writes its result code to result variable
-    switch (e.target.className) {
+    switch (e.target.classList[0]) {
         case "rockImage":
             userChoice = "Rock";
             result = playRound(userChoice,computerChoice);

@@ -1,5 +1,6 @@
 body{
-    background-image: url("./images/wood-591631_1920.jpg");
+    /*background-image: url("./images/wood-591631_1920.jpg"); */
+    background-color: rgb(177, 163, 145);
 
 }
 
@@ -47,21 +48,31 @@ p{
     justify-content: center;
     align-items: center;
     margin: 20px;
+
+    font-size: 35px;
+    color:rgb(53, 51, 49);
+    transform: rotate(-35deg);
 }
 .rockImage {
     width: 200px;
     height: fit-content;
-    margin: 10px;
+    padding: 10px;
 }
 .paperImage{
     width: 150px;
     height: fit-content;
-    margin: 10px;
+    padding: 10px;
 }
 .scissorsImage{
     width: 180px;
     height: fit-content;
-    margin: 10px;
+    padding: 10px;
+}
+
+.highlightSelection{
+    border-style: solid;
+    border-color: gold;
+    border-radius: 25px;
 }
 
 .rockBtn.rpsBtn, .paperBtn.rpsBtn, .scissorsBtn.rpsBtn{
