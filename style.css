@@ -51,6 +51,8 @@ button{
 }
 img{
     margin: 2px;
+    border-style: solid;
+    border-color: burlywood;
 }
 #versusText{
     display: flex;
