@@ -214,6 +214,9 @@ function restartGame(){
     winsByCpu = 0;
     gameRound = 0;
 
+    scoreCpu.textContent = 0;
+    scorePlayer.textContent = 0;
+
     restartBtn.disabled = true;
     rockBtn.disabled = false;
     paperBtn.disabled = false;
