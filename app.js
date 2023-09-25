@@ -71,7 +71,7 @@ function playGame(e){
 
     // clean up previous selections, not in the first round
     if(gameRound != 1){
-        removeHighlight(e);
+        removeHighlight();
     }
     // Add round number to the game results logging
     resultText += "Round " + gameRound + ": ";
@@ -162,7 +162,7 @@ function highlightComputerChoice(computerChoice){
 }
 
 // Remove highlight selections from images
-function removeHighlight(e){
+function removeHighlight(){
     let allImages = document.querySelectorAll("img");
     for(i=0; i<allImages.length; i++)
     { 
@@ -221,6 +221,8 @@ function restartGame(){
     rockBtn.disabled = false;
     paperBtn.disabled = false;
     scissorsBtn.disabled = false;
+
+    removeHighlight();
 
 }
 
