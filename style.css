@@ -30,6 +30,8 @@ h1{
 
 p{
     font-family:Sans-serif, serif;
+    line-height: 5px;   /* within paragraph */
+    margin-bottom: 5px; /* between paragraphs */
     /*font-size: 30px;*/
 }
 
@@ -42,7 +44,14 @@ p{
     background-color: burlywood;
     padding: 10px;
 }
-
+button{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+img{
+    margin: 2px;
+}
 #versusText{
     display: flex;
     justify-content: center;
@@ -76,6 +85,7 @@ p{
     border-style: solid;
     border-color: gold;
     border-radius: 25px;
+    box-shadow: 2px 2px 0 0 rgb(114, 97, 1);
 }
 
 .rockBtn.rpsBtn, .paperBtn.rpsBtn, .scissorsBtn.rpsBtn{

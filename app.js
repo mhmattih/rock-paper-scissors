@@ -14,6 +14,8 @@ const paperBtn = document.querySelector('.paperBtn');
 const scissorsBtn = document.querySelector('.scissorsBtn');
 const restartBtn = document.querySelector('.restartBtn');
 
+//const element = document.getElementById("gameLog");
+
 restartBtn.disabled = true;
 rockBtn.disabled = false;
 paperBtn.disabled = false;
@@ -176,10 +178,11 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     scorePlayer.textContent = winsByUser;
 
     // Create game log. A new paragraph to show game results
+    // Add resultItem class for removing purposes.
     const gameLogPara = document.createElement("p");
+    gameLogPara.setAttribute('class','resultItem');
     const resultNode = document.createTextNode(result);
     gameLogPara.appendChild(resultNode);
-
     const gameLogElement = document.getElementById("gameLog");
     gameLogElement.appendChild(gameLogPara);
 
@@ -199,16 +202,17 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
 
 function restartGame(){
             
-    computerChoiceParagraph.textContent = "";
-    roundResultParagraph.textContent = "";
-    userChoiceParagraph.textContent = "";
-    winsByCpuParagraph.textContent = "";
-    winsByUserParagraph.textContent = "";
     winnerTextParagraph.textContent = "";
-    document.getElementById("gameLog").remove();
-
+  
+    // Remove all previous game results from the page.
+    let resultItemList = document.getElementsByClassName("resultItem");
+    for(let i = resultItemList.length - 1; 0 <= i; i--)
+        if(resultItemList[i] && resultItemList[i].parentElement){
+            resultItemList[i].parentElement.removeChild(resultItemList[i]);
+        }
     winsByUser = 0;
     winsByCpu = 0;
+    gameRound = 0;
 
     restartBtn.disabled = true;
     rockBtn.disabled = false;
