@@ -173,7 +173,7 @@ function displayResults(result,winsByCpu,winsByUser){
     scorePlayer.textContent = winsByUser;
 
     // Create game log. A new paragraph to show game result
-    // Added resultItem class fto be able to remove them in restart phase.
+    // Added resultItem class to be able to remove them in restart phase.
     const gameLogPara = document.createElement("p");
     gameLogPara.setAttribute('class','resultItem');
     const resultNode = document.createTextNode(result);
@@ -189,7 +189,7 @@ function displayResults(result,winsByCpu,winsByUser){
         }else{
             winnerTextParagraph.textContent = "YOU LOST!";
         }
-        restartBtn.disabled = false;
+        
         rockBtn.disabled = true;
         paperBtn.disabled = true;
         scissorsBtn.disabled = true;
@@ -220,8 +220,7 @@ function restartGame(){
     scoreCpu.textContent = 0;
     scorePlayer.textContent = 0;
 
-    // Disable restart-button and enable play-buttons
-    //restartBtn.disabled = true;
+    // Enable play-buttons and hide restart-button
     rockBtn.disabled = false;
     paperBtn.disabled = false;
     scissorsBtn.disabled = false;
