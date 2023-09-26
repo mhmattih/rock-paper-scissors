@@ -131,7 +131,7 @@ function playGame(e){
 
     }
 
-    displayResults(resultText,computerChoice,userChoice,winsByCpu,winsByUser);
+    displayResults(resultText,winsByCpu,winsByUser);
     
 }
 
@@ -166,7 +166,7 @@ function removeHighlight(){
 }
 
 // To display results on the page
-function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
+function displayResults(result,winsByCpu,winsByUser){
 
     // set current scores
     scoreCpu.textContent = winsByCpu;
