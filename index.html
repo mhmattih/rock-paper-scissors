@@ -10,10 +10,10 @@
 
 </head>
 <body>
-    <h1>Rock Paper Scissors game</h1>
+    <h1>Rock-Paper-Scissors Game</h1>
     <section class = "playChoices">
         <div class = "ChoiceContainer"> 
-            <p>Player, Make Your Choice!</p>
+            <p>PLAYER, MAKE YOUR MOVE!</p>
             <div class="images">
                 <button class="rockBtn rpsBtn">
                     <img class ="rockImage" src="./images/rock-transparent.png" alt="Rock">
@@ -26,12 +26,9 @@
                 </button>
             </div>
         </div>
-        <div id="versusText">
-            <p>VS</p>
-        </div>
-
+        <div id="versusText">VS</div>
         <div class = "ChoiceContainer">
-            <p>CPU</p>
+            <p>OPPONENT</p>
             <div class="images">
                 <img class ="rockImage cpuRock" src="./images/rock-transparent.png" alt="Rock">
                 <img class ="paperImage cpuPaper" src="./images/paper-transparent.png" alt="Paper">
@@ -40,27 +37,29 @@
         </div>
     </section>
     <section class = "scores">
-        <div class = "scoreBoard">
-            <div class="scoreContainer">
-                <div>PLAYER</div>
-                <div class ="scoreResult scorePlayer">0</div>
+        <div class = "scoreBoardandText">
+            <h3>SCOREBOARD</h3>
+            <div class = "scoreBoard">
+                <div class="scoreContainer">
+                    <p>PLAYER</p>
+                    <div class ="scoreResult scorePlayer">0</div>
+                </div>
+                <div class="scoreContainer">
+                    <p>CPU</p>
+                    <div class ="scoreResult scoreCpu">0</div>
+                </div>
             </div>
-            <div class="scoreContainer">
-                <div>CPU</div>
-                <div class ="scoreResult scoreCpu">0</div>
-            </div>
-
-        </div>
-        <div class = "scoreLog">
-            <h3>Game results:</h3>
-            <div id="gameLog"></div>
-
-        </div>
-        <p>
             <div id="winnerText"></div>
-            <button class="restartBtn">Restart game</button>
-        </p>
+            <button class="restartBtn">PLAY AGAIN?</button>
+        </div>  
+        <div class = "scoreLog">
+            <h3>GAME RESULTS</h3>
+            <div id="gameLog"></div>
+        </div>
     </section>
+    <footer>
+        ©2023 MATTI HIRVONEN. This game was done as a part of Odin Project (https://www.theodinproject.com/)
+    </footer>
 
 </body>
 </html>

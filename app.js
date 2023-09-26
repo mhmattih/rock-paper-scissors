@@ -1,6 +1,3 @@
-console.log("Rock Paper Scissors game begins!");
-
-// Global variables to count rounds and wins 
 let winsByUser = 0;
 let winsByCpu = 0;
 let gameRound = 0;
@@ -14,23 +11,19 @@ const paperBtn = document.querySelector('.paperBtn');
 const scissorsBtn = document.querySelector('.scissorsBtn');
 const restartBtn = document.querySelector('.restartBtn');
 
-//const element = document.getElementById("gameLog");
-
-restartBtn.disabled = true;
-rockBtn.disabled = false;
-paperBtn.disabled = false;
-scissorsBtn.disabled = false;
+// Make restart button hidden at start 
+restartBtn.style.display = "none";
 
 // getComputerChoice
-// Compute computer's choice randomly, three choices, by default lowercase.
+// Compute computer's choice randomly. 
 // Returns result string "Rock", "Paper" or "Scissors"
 function getComputerChoice(){
     const computerChoices = ["Rock", "Paper", "Scissors"];
     return computerChoices[Math.floor(Math.random() * computerChoices.length)];
 }
 
-// playRound
-// Takes two inputs player's and computer's choices (two strings)
+// playRound function
+// Takes player's and computer's choices as inputs (strings)
 // Compute game result. Rules are the following
 // 1. Rock wins scissors, rock loses paper
 // 2. Scissors win paper, scissors lose rock
@@ -56,45 +49,46 @@ function playRound(playerChoice,computerChoice){
     } else if (playerChoice === "Paper" && computerChoice === "Scissors"){
         roundResult = -3;
     } else {
-        roundResult = 999;
+        roundResult = 999; // Error
     }
     return roundResult;
 }
 
-// playGame function, which takes an event as input
-// Result of the game is displayed on the page
+// playGame function
+// Takes an event as input
+// Result of a single game is displayed on the page
 function playGame(e){
 
-    let result = 0;
+    let result = 0; 
     let resultText = "";
+    let userChoice = "";
     gameRound++;
+
+    // Add round number to the game results logging
+    resultText += "Round " + gameRound + ": ";
 
     // clean up previous selections, not in the first round
     if(gameRound != 1){
         removeHighlight();
     }
-    // Add round number to the game results logging
-    resultText += "Round " + gameRound + ": ";
-
-    let userChoice = "";
 
     // make CPU choice and highlight it
     let computerChoice = getComputerChoice();
     highlightComputerChoice(computerChoice);
     
-    // plays one round of RPS game and writes its result code to result variable
+    // plays one round of RPS game and write its result code to result variable
     switch (e.target.classList[0]) {
-        case "rockImage":
+        case "rockImage": // In case player chooses rock
             e.target.classList.add('highlightSelection');
             userChoice = "Rock";
             result = playRound(userChoice,computerChoice);
             break;
-        case "paperImage":
+        case "paperImage": // In case player chooses paper
             e.target.classList.add('highlightSelection');
             userChoice = "Paper";
             result = playRound(userChoice,computerChoice);
             break;
-        case "scissorsImage":
+        case "scissorsImage": // In case player chooses scissors
             e.target.classList.add('highlightSelection');
             userChoice = "Scissors";
             result = playRound(userChoice,computerChoice);
@@ -161,7 +155,7 @@ function highlightComputerChoice(computerChoice){
     }  
 }
 
-// Remove highlight selections from images
+// Remove selection highlight where it was applied
 function removeHighlight(){
     let allImages = document.querySelectorAll("img");
     for(i=0; i<allImages.length; i++)
@@ -174,11 +168,12 @@ function removeHighlight(){
 // To display results on the page
 function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
 
+    // set current scores
     scoreCpu.textContent = winsByCpu;
     scorePlayer.textContent = winsByUser;
 
-    // Create game log. A new paragraph to show game results
-    // Add resultItem class for removing purposes.
+    // Create game log. A new paragraph to show game result
+    // Added resultItem class fto be able to remove them in restart phase.
     const gameLogPara = document.createElement("p");
     gameLogPara.setAttribute('class','resultItem');
     const resultNode = document.createTextNode(result);
@@ -186,22 +181,27 @@ function displayResults(result,computerChoice,userChoice,winsByCpu,winsByUser){
     const gameLogElement = document.getElementById("gameLog");
     gameLogElement.appendChild(gameLogPara);
 
+    // after 5 wins the winner is announced and restart button appears.
     if (winsByCpu == 5 || winsByUser == 5){
 
         if(winsByUser == 5){
-            winnerTextParagraph.textContent = "You won the game! Congratulations";
+            winnerTextParagraph.textContent = "YOU WON!";
         }else{
-            winnerTextParagraph.textContent = "You lost! CPU won the game!";
+            winnerTextParagraph.textContent = "YOU LOST!";
         }
         restartBtn.disabled = false;
         rockBtn.disabled = true;
         paperBtn.disabled = true;
         scissorsBtn.disabled = true;
+        restartBtn.style.display = "block";
     }
 }
 
+// function to start a new game
+// this function clears the view 
 function restartGame(){
-            
+    
+    // Set congratulation text empty.
     winnerTextParagraph.textContent = "";
   
     // Remove all previous game results from the page.
@@ -210,17 +210,22 @@ function restartGame(){
         if(resultItemList[i] && resultItemList[i].parentElement){
             resultItemList[i].parentElement.removeChild(resultItemList[i]);
         }
+
+    // zero win and round counters
     winsByUser = 0;
     winsByCpu = 0;
     gameRound = 0;
 
+    // Set scoreBoard to 0:0
     scoreCpu.textContent = 0;
     scorePlayer.textContent = 0;
 
-    restartBtn.disabled = true;
+    // Disable restart-button and enable play-buttons
+    //restartBtn.disabled = true;
     rockBtn.disabled = false;
     paperBtn.disabled = false;
     scissorsBtn.disabled = false;
+    restartBtn.style.display = "none";
 
     removeHighlight();
 
